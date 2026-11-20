@@ -269,17 +269,21 @@
       <h1>Black &amp; Gold Comfort in <span>Nyanchwa, Kisii</span></h1>
       <p>
         Book verified stays in Nyanchwa directly online and confirm instantly via WhatsApp on
-        <strong>0788245106</strong>. Every image path matches the exact files inside
-        <code>SERENE-BNB-S / images /</code>.
+        <strong>0788245106</strong>. Images load from <code>images/</code> on your site and fall back
+        to GitHub raw URLs if previewed elsewhere.
       </p>
       <div class="hero-cta-row">
         <a href="#stays" class="btn-gold">Explore Stays</a>
-        <a href="#photo-gallery" class="btn-outline-gold">View All 11 Photos</a>
+        <a href="#photo-gallery" class="btn-outline-gold">View All Photos</a>
       </div>
     </div>
 
     <div class="hero-preview-card">
-      <img src="images/1795203755185.jpg" alt="Nyanchwa lounge interior in Kisii" />
+      <img
+        data-local="images/1795203755185.jpg"
+        src="images/1795203755185.jpg"
+        alt="Nyanchwa lounge interior in Kisii"
+      />
       <div class="hero-preview-caption">
         <span>images/1795203755185.jpg</span>
         <span>0788245106</span>
@@ -301,8 +305,8 @@
     <section id="photo-gallery">
       <div class="section-head">
         <div>
-          <h2>Nyanchwa Photo's
-          <p>Matched directly to <code>SERENE-BNB-S
+          <h2>Nyanchwa Photo Gallery (SERENE-BNB-S / images/)</h2>
+          <p>Tries local <code>images/&lt;file&gt;</code> first, then <code>raw.githubusercontent.com/onkundimorgan292-cpu/SERENE-BNB-S/main/images/&lt;file&gt;</code>.</p>
         </div>
       </div>
       <div class="gallery-grid" id="galleryGrid"></div>
@@ -365,6 +369,8 @@
   </footer>
 
   <script>
+    const RAW_BASE = "https://raw.githubusercontent.com/onkundimorgan292-cpu/SERENE-BNB-S/main/";
+
     const EMBEDDED_DATA = {
       brand: {
         name: "SERENE STAY AIRBNB'S",
@@ -374,17 +380,17 @@
         usdRate: 130
       },
       photos: [
-        { id: "img-1",  room_type: "Lounge", title: "Nyanchwa Lounge & TV Corner" },
-        { id: "img-2", file:", room_type: "Lounge", title: "Gold & Charcoal Cove-Lit Living Room" },
-        { id: "img-3", file: ", room_type: "Lounge", title: "Brass & Marble Coffee Table Salon" },
-        { id: "img-4", file:", room_type: "Lounge", title: "Warm Amber & Grey Velvet Lounge" },
-        { id: "img-5", file: ", room_type: "Bedroom", title: "Slat-Wall Master Suite" },
-        { id: "img-6", file:", room_type: "Lounge", title: "Warm Glow Cozy Living Space" },
-        { id: "img-7", file: ", room_type: "Lounge", title: "Gold Accent Living & Media Area" },
-        { id: "img-8", file: ", room_type: "Lounge", title: "Executive Nyanchwa Sitting Room" },
-        { id: "img-9", file: ", room_type: "Bedroom", title: "Classic Suite with Deep Navy Throw" },
-        { id: "img-10", file: ", room_type: "Lounge", title: "Family Lounge & Cup-Holder Sofa" },
-        { id: "img-11", file: ", room_type: "Lounge", title: "Nyanchwa Signature Suite View" }
+        { id: "img-1", file: "images/13905.jpg", room_type: "Lounge", title: "Nyanchwa Lounge & TV Corner" },
+        { id: "img-2", file: "images/1795203750919.jpg", room_type: "Lounge", title: "Gold & Charcoal Cove-Lit Living Room" },
+        { id: "img-3", file: "images/1795203755185.jpg", room_type: "Lounge", title: "Brass & Marble Coffee Table Salon" },
+        { id: "img-4", file: "images/1795203763969.jpg", room_type: "Lounge", title: "Warm Amber & Grey Velvet Lounge" },
+        { id: "img-5", file: "images/1795203772100.jpg", room_type: "Bedroom", title: "Slat-Wall Master Suite" },
+        { id: "img-6", file: "images/1795203775185.jpg", room_type: "Lounge", title: "Warm Glow Cozy Living Space" },
+        { id: "img-7", file: "images/1795203778895.jpg", room_type: "Lounge", title: "Gold Accent Living & Media Area" },
+        { id: "img-8", file: "images/1795203781498.jpg", room_type: "Lounge", title: "Executive Nyanchwa Sitting Room" },
+        { id: "img-9", file: "images/1795203793511.jpg", room_type: "Bedroom", title: "Classic Suite with Deep Navy Throw" },
+        { id: "img-10", file: "images/1795203796704.jpg", room_type: "Lounge", title: "Family Lounge & Cup-Holder Sofa" },
+        { id: "img-11", file: "images/1795203857962.jpg", room_type: "Lounge", title: "Nyanchwa Signature Suite View" }
       ],
       properties: [
         {
@@ -423,6 +429,11 @@
     let currency = "KES";
     let siteData = EMBEDDED_DATA;
 
+    function toRemoteUrl(relPath) {
+      const clean = String(relPath || "").replace(/^\.?\//, "");
+      return RAW_BASE + clean;
+    }
+
     function fallbackSvg(filename) {
       const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
         <rect width="600" height="400" fill="#141419"/>
@@ -434,13 +445,25 @@
       return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
     }
 
-    function attachFallbacks() {
-      document.querySelectorAll("img").forEach((img) => {
-        const file = img.getAttribute("src");
-        img.onerror = () => {
+    function wireImageChain(img, localPath) {
+      const remoteUrl = toRemoteUrl(localPath);
+      img.dataset.triedRemote = "0";
+      img.onerror = () => {
+        if (img.dataset.triedRemote === "0") {
+          img.dataset.triedRemote = "1";
+          img.src = remoteUrl;
+        } else {
           img.onerror = null;
-          img.src = fallbackSvg(file);
-        };
+          img.src = fallbackSvg(localPath);
+        }
+      };
+      img.src = localPath;
+    }
+
+    function attachAllImageChains() {
+      document.querySelectorAll("img").forEach((img) => {
+        const localPath = img.getAttribute("data-local") || img.getAttribute("src");
+        if (localPath) wireImageChain(img, localPath);
       });
     }
 
@@ -462,7 +485,7 @@
         const card = document.createElement("article");
         card.className = "card";
         card.innerHTML = `
-          <img src="${prop.photo}" alt="${prop.name} in ${prop.subarea}" />
+          <img data-local="${prop.photo}" alt="${prop.name} in ${prop.subarea}" />
           <div class="card-body">
             <div class="card-top">
               <div class="card-title">${prop.name}</div>
@@ -487,7 +510,7 @@
         select.appendChild(opt);
       });
 
-      attachFallbacks();
+      attachAllImageChains();
       updateTotal();
     }
 
@@ -498,7 +521,7 @@
         const item = document.createElement("div");
         item.className = "gallery-item";
         item.innerHTML = `
-          <img src="${p.file}" alt="${p.title}" />
+          <img data-local="${p.file}" alt="${p.title}" />
           <div class="gallery-meta">
             <strong>${p.file}</strong>
             <span>${p.room_type} • ${p.title}</span>
@@ -506,7 +529,7 @@
         `;
         gallery.appendChild(item);
       });
-      attachFallbacks();
+      attachAllImageChains();
     }
 
     window.selectProperty = function (id) {
@@ -596,7 +619,7 @@
 
       renderProperties();
       renderGallery();
-      attachFallbacks();
+      attachAllImageChains();
     }
 
     init();
