@@ -1,0 +1,163 @@
+{
+  "brand": {
+    "name": "SERENE STAY AIRBNB'S",
+    "tagline": "Nyanchwa, Kisii • Black & Gold Luxury Stays",
+    "location": "Nyanchwa, Kisii, Kenya",
+    "whatsapp_display": "0788245106",
+    "whatsapp_intl": "254788245106",
+    "currency": "KES",
+    "usd_rate": 130,
+    "status_dot": "Live • Instant WhatsApp Booking"
+  },
+  "photos": [
+    {
+      "id": "img-13905",
+      "file": "13905.jpg",
+      "room_type": "Lounge",
+      "title": "Nyanchwa Lounge & TV Corner",
+      "caption": "Grey L-shaped sectional sofa, round ottoman, and recessed ceiling feature in Nyanchwa, Kisii."
+    },
+    {
+      "id": "img-13906",
+      "file": "13906.jpg",
+      "room_type": "Lounge",
+      "title": "Gold & Charcoal Cove-Lit Living Room",
+      "caption": "Spacious living room with mustard-gold and grey drapery, plush rug, and ambient ceiling lighting."
+    },
+    {
+      "id": "img-13907",
+      "file": "13907.jpg",
+      "room_type": "Lounge",
+      "title": "Brass & Marble Coffee Table Salon",
+      "caption": "Twin marble-top tables with gold frames, velvet gold accent pillow, and framed wall mirrors."
+    },
+    {
+      "id": "img-13909",
+      "file": "13909.jpg",
+      "room_type": "Lounge",
+      "title": "Warm Amber & Grey Velvet Lounge",
+      "caption": "Tufted grey seating paired with rich amber-gold throws, floor lamp, and warm accent lighting."
+    },
+    {
+      "id": "img-13910",
+      "file": "13910.jpg",
+      "room_type": "Bedroom",
+      "title": "Slat-Wall Master Suite",
+      "caption": "Plush upholstered bed against a vertical dark slat headboard, ring chandelier, and crisp linens."
+    },
+    {
+      "id": "img-13911",
+      "file": "13911.jpg",
+      "room_type": "Lounge",
+      "title": "Warm Glow Cozy Living Space",
+      "caption": "Dark sofa, round mirror, sculptural vase, and warm evening lighting for quiet stays in Nyanchwa."
+    },
+    {
+      "id": "img-13912",
+      "file": "13912.jpg",
+      "room_type": "Lounge",
+      "title": "Gold Accent Living & Media Area",
+      "caption": "Gold decor accents, white media console, and sunlit tiled floors in Nyanchwa, Kisii."
+    },
+    {
+      "id": "img-13916",
+      "file": "13916.jpg",
+      "room_type": "Lounge",
+      "title": "Executive Nyanchwa Sitting Room",
+      "caption": "Twin armchairs, gold-rimmed coffee tables, abstract canvas art, and pendant lighting."
+    },
+    {
+      "id": "img-13917",
+      "file": "13917.jpg",
+      "room_type": "Bedroom",
+      "title": "Classic Suite with Deep Navy Throw",
+      "caption": "Spacious bedroom with wardrobe storage, full-length mirror, and gold-trimmed curtains."
+    },
+    {
+      "id": "img-13918",
+      "file": "13918.jpg",
+      "room_type": "Lounge",
+      "title": "Family Lounge & Cup-Holder Sofa",
+      "caption": "Comfortable family seating with built-in console cup holders, mounted TV, and bright curtains."
+    }
+  ],
+  "properties": [
+    {
+      "id": "nyanchwa-gold-suite",
+      "name": "Nyanchwa Gold Crest Residence",
+      "subarea": "Nyanchwa Hill, Kisii",
+      "category": "Luxury Suite",
+      "price_kes": 5500,
+      "guests": 4,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "rating": "4.95",
+      "featured_photo": "13907.jpg",
+      "gallery": [
+        "13907.jpg",
+        "13910.jpg",
+        "13912.jpg",
+        "13916.jpg"
+      ],
+      "amenities": [
+        "High-Speed Wi-Fi",
+        "Smart TV",
+        "24/7 Security",
+        "Hot Shower",
+        "Free Parking"
+      ],
+      "summary": "Gold-accented living salon and slat-wall bedroom suite designed for serene stays in Nyanchwa."
+    },
+    {
+      "id": "amber-lounge-retreat",
+      "name": "Amber Velvet Nyanchwa Apartment",
+      "subarea": "Nyanchwa Estate, Kisii",
+      "category": "Executive Flat",
+      "price_kes": 4500,
+      "guests": 3,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "rating": "4.90",
+      "featured_photo": "13909.jpg",
+      "gallery": [
+        "13909.jpg",
+        "13911.jpg",
+        "13917.jpg"
+      ],
+      "amenities": [
+        "High-Speed Wi-Fi",
+        "Smart TV",
+        "24/7 Security",
+        "Hot Shower",
+        "Kitchenette"
+      ],
+      "summary": "Warm amber and charcoal lounge paired with a calm bedroom ideal for business or leisure in Kisii."
+    },
+    {
+      "id": "nyanchwa-family-home",
+      "name": "Nyanchwa View Family BnB",
+      "subarea": "Upper Nyanchwa, Kisii",
+      "category": "Family Home",
+      "price_kes": 6500,
+      "guests": 5,
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "rating": "4.92",
+      "featured_photo": "13906.jpg",
+      "gallery": [
+        "13906.jpg",
+        "13905.jpg",
+        "13918.jpg",
+        "13917.jpg"
+      ],
+      "amenities": [
+        "High-Speed Wi-Fi",
+        "Smart TV",
+        "24/7 Security",
+        "Hot Shower",
+        "Free Parking"
+      ],
+      "summary": "Generous family living spaces and relaxed bedrooms with easy access around Nyanchwa, Kisii."
+    }
+  ]
+}
