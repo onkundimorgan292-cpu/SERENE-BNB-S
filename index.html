@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SERENE STAY AIRBNB'S — Nyanchwa, Kisii</title>
+<style>
+:root {
+--bg-black: #09090b;
+--bg-card: #121216;
+--bg-elevated: #19191f;
+--gold: #d4af37;
+--gold-bright: #f0cf65;
+--gold-dim: rgba(212, 175, 55, 0.16);
+--text-main: #f8f7f4;
+--text-muted: #b3b0a6;
+--border-gold: rgba(212, 175, 55, 0.32);
+--live-green: #22c55e;
+}
+​* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+​body {
+font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+background-color: var(--bg-black);
+color: var(--text-main);
+line-height: 1.55;
+}
+​header {
+position: sticky;
+top: 0;
+z-index: 40;
+background: rgba(9, 9, 11, 0.94);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid var(--border-gold);
+}
+​.nav-wrap {
+max-width: 1180px;
+margin: 0 auto;
+padding: 0.9rem 1.25rem;
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: space-between;
+gap: 0.85rem;
+}
+​.brand-box {
+display: flex;
+align-items: center;
+gap: 0.7rem;
+}
+​.live-dot {
+width: 11px;
+height: 11px;
+border-radius: 50%;
+background: var(--live-green);
+box-shadow: 0 0 10px var(--live-green);
+flex-shrink: 0;
+}
+​.brand-title {
+font-size: 1.08rem;
+font-weight: 800;
+letter-spacing: 0.08em;
+color: var(--gold-bright);
+}
+​.brand-sub {
+font-size: 0.78rem;
+color: var(--text-muted);
+}
+​.nav-actions {
+display: flex;
+align-items: center;
+gap: 0.65rem;
+flex-wrap: wrap;
+}
+​.btn-gold {
+background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+color: #09090b;
+border: none;
+border-radius: 8px;
+padding: 0.55rem 0.95rem;
+font-weight: 700;
+font-size: 0.88rem;
+cursor: pointer;
+text-decoration: none;
+display: inline-flex;
+align-items: center;
+gap: 0.4rem;
+}
+​.btn-outline-gold {
+background: transparent;
+color: var(--gold-bright);
+border: 1px solid var(--border-gold);
+border-radius: 8px;
+padding: 0.52rem 0.85rem;
+font-weight: 600;
+font-size: 0.86rem;
+cursor: pointer;
+}
+​.hero {
+max-width: 1180px;
+margin: 1.5rem auto 0;
+padding: 2rem 1.5rem;
+background: linear-gradient(145deg, #141419 0%, #0d0d10 65%, rgba(212, 175, 55, 0.12) 100%);
+border: 1px solid var(--border-gold);
+border-radius: 16px;
+display: grid;
+grid-template-columns: 1.25fr 0.75fr;
+gap: 1.5rem;
+align-items: center;
+}
+​.hero-badge {
+display: inline-flex;
+align-items: center;
+gap: 0.45rem;
+background: var(--gold-dim);
+border: 1px solid var(--border-gold);
+color: var(--gold-bright);
+padding: 0.3rem 0.75rem;
+border-radius: 999px;
+font-size: 0.8rem;
+font-weight: 600;
+margin-bottom: 0.85rem;
+}
+​.hero h1 {
+font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+line-height: 1.15;
+color: var(--text-main);
+margin-bottom: 0.75rem;
+}
+​.hero h1 span {
+color: var(--gold-bright);
+}
+​.hero p {
+color: var(--text-muted);
+max-width: 58ch;
+margin-bottom: 1.2rem;
+}
+​.hero-cta-row {
+display: flex;
+flex-wrap: wrap;
+gap: 0.75rem;
+}
+​.hero-preview-card {
+background: var(--bg-card);
+border: 1px solid var(--border-gold);
+border-radius: 12px;
+overflow: hidden;
+}
+​.hero-preview-card img {
+width: 100%;
+height: 245px;
+object-fit: cover;
+display: block;
+}
+​.hero-preview-caption {
+padding: 0.8rem 1rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 0.85rem;
+color: var(--gold-bright);
+border-top: 1px solid rgba(212, 175, 55, 0.18);
+}
+​main {
+max-width: 1180px;
+margin: 0 auto;
+padding: 2rem 1.25rem 3.5rem;
+}
+​.section-head {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+align-items: flex-end;
+gap: 1rem;
+margin-bottom: 1.25rem;
+}
+​.section-head h2 {
+font-size: 1.45rem;
+color: var(--gold-bright);
+}
+​.section-head p {
+color: var(--text-muted);
+font-size: 0.9rem;
+}
+​.grid-3 {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 1.25rem;
+margin-bottom: 2.5rem;
+}
+​.card {
+background: var(--bg-card);
+border: 1px solid var(--border-gold);
+border-radius: 14px;
+overflow: hidden;
+display: flex;
+flex-direction: column;
+}
+​.card img {
+width: 100%;
+height: 220px;
+object-fit: cover;
+display: block;
+background: var(--bg-elevated);
+}
+​.card-body {
+padding: 1.05rem;
+display: flex;
+flex-direction: column;
+flex: 1;
+gap: 0.65rem;
+}
+​.card-top {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+gap: 0.5rem;
+}
+​.card-title {
+font-size: 1.08rem;
+font-weight: 700;
+color: var(--text-main);
+}
+​.price-tag {
+color: var(--gold-bright);
+font-weight: 800;
+font-size: 0.98rem;
+white-space: nowrap;
+}
+​.meta {
+font-size: 0.83rem;
+color: var(--text-muted);
+}
+​.amenities {
+display: flex;
+flex-wrap: wrap;
+gap: 0.4rem;
+}
+​.pill {
+font-size: 0.74rem;
+padding: 0.22rem 0.55rem;
+border-radius: 999px;
+background: var(--gold-dim);
+color: var(--gold-bright);
+border: 1px solid rgba(212, 175, 55, 0.25);
+}
+​.card-footer {
+margin-top: auto;
+padding-top: 0.5rem;
+display: flex;
+gap: 0.5rem;
+}
+​.gallery-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+gap: 1rem;
+}
+​.gallery-item {
+background: var(--bg-card);
+border: 1px solid var(--border-gold);
+border-radius: 12px;
+overflow: hidden;
+}
+​.gallery-item img {
+width: 100%;
+height: 170px;
+object-fit: cover;
+display: block;
+background: var(--bg-elevated);
+}
+​.gallery-meta {
+padding: 0.65rem 0.75rem;
+font-size: 0.8rem;
+}
+​.gallery-meta strong {
+display: block;
+color: var(--gold-bright);
+margin-bottom: 0.15rem;
+}
+​.gallery-meta span {
+color: var(--text-muted);
+}
+​.booking-panel {
+margin-top: 2.5rem;
+background: var(--bg-card);
+border: 1px solid var(--border-gold);
+border-radius: 16px;
+padding: 1.5rem;
+}
+​.form-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+gap: 1rem;
+margin-top: 1rem;
+}
+​.field label {
+display: block;
+font-size: 0.82rem;
+color: var(--gold-bright);
+margin-bottom: 0.35rem;
+font-weight: 600;
+}
+​.field input,
+.field select,
+.field textarea {
+width: 100%;
+background: var(--bg-elevated);
+color: var(--text-main);
+border: 1px solid var(--border-gold);
+border-radius: 8px;
+padding: 0.65rem 0.75rem;
+font-size: 0.9rem;
+}
+​.summary-box {
+margin-top: 1.15rem;
+padding: 1rem;
+border-radius: 10px;
+background: var(--bg-elevated);
+border: 1px dashed var(--border-gold);
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+align-items: center;
+gap: 1rem;
+}
+​footer {
+border-top: 1px solid var(--border-gold);
+padding: 1.4rem 1.25rem;
+text-align: center;
+color: var(--text-muted);
+font-size: 0.84rem;
+}
+​@media (max-width: 820px) {
+.hero {
+grid-template-columns: 1fr;
+}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="nav-wrap">
+<div class="brand-box">
+<span class="live-dot" title="Live WhatsApp Booking Active"></span>
+<div>
+<div class="brand-title">SERENE STAY AIRBNB'S</div>
+<div class="brand-sub">Nyanchwa, Kisii • WhatsApp: 0788245106</div>
+</div>
+</div>
+<div class="nav-actions">
+<button type="button" class="btn-outline-gold" id="currencyToggle">Currency: KES</button>
+<a href="#book-now" class="btn-gold">Book on WhatsApp</a>
+</div>
+</div>
+</header>
+​<section class="hero">
+<div>
+<div class="hero-badge">
+<span class="live-dot"></span>
+<span>Live • Nyanchwa, Kisii Airbnb Stays</span>
+</div>
+<h1>Black & Gold Comfort in <span>Nyanchwa, Kisii</span></h1>
+<p>
+Book verified stays in Nyanchwa directly online and confirm instantly via WhatsApp on
+<strong>0788245106</strong>. Every residence and gallery frame below uses the exact same
+photo assets listed in <code>listings.json</code>.
+</p>
+<div class="hero-cta-row">
+<a href="#stays" class="btn-gold">Explore Stays</a>
+<a href="#photo-gallery" class="btn-outline-gold">View All 10 Photos</a>
+</div>
+</div>
+​<div class="hero-preview-card">
+<img id="heroPhoto" src="13907.jpg" alt="Brass and marble coffee table lounge in Nyanchwa, Kisii" />
+<div class="hero-preview-caption">
+<span id="heroPhotoLabel">13907.jpg • Nyanchwa Lounge</span>
+<span>0788245106</span>
+</div>
+</div>
+</section>
+​<main>
+<section id="stays">
+<div class="section-head">
+<div>
+<h2>Nyanchwa Residences</h2>
+<p>Select any stay to pre-fill your WhatsApp booking request for 0788245106.</p>
+</div>
+</div>
+<div class="grid-3" id="propertiesGrid"></div>
+</section>
+​<section id="photo-gallery">
+<div class="section-head">
+<div>
+<h2>Nyanchwa Photo Gallery (10 Photos)</h2>
+<p>Synced directly from <code>listings.json</code>: 13905.jpg, 13906.jpg, 13907.jpg, 13909.jpg, 13910.jpg, 13911.jpg, 13912.jpg, 13916.jpg, 13917.jpg, 13918.jpg.</p>
+</div>
+</div>
+<div class="gallery-grid" id="galleryGrid"></div>
+</section>
+​<section id="book-now" class="booking-panel">
+<div class="section-head">
+<div>
+<h2>Online Booking via WhatsApp (0788245106)</h2>
+<p>Fill your details below and click <strong>Send Booking on WhatsApp</strong> to open a pre-filled WhatsApp chat to <strong>0788245106</strong> (+254788245106).</p>
+</div>
+</div>
+​<form id="bookingForm">
+<div class="form-grid">
+<div class="field">
+<label for="propertySelect">Residence in Nyanchwa</label>
+<select id="propertySelect"></select>
+</div>
+<div class="field">
+<label for="guestName">Full Name</label>
+<input type="text" id="guestName" placeholder="Your full name" required />
+</div>
+<div class="field">
+<label for="guestPhone">Your Phone / WhatsApp</label>
+<input type="tel" id="guestPhone" placeholder="07XX XXX XXX" required />
+</div>
+<div class="field">
+<label for="checkIn">Check-in Date</label>
+<input type="date" id="checkIn" required />
+</div>
+<div class="field">
+<label for="nights">Number of Nights</label>
+<input type="number" id="nights" min="1" max="30" value="2" required />
+</div>
+<div class="field">
+<label for="guestsCount">Guests</label>
+<input type="number" id="guestsCount" min="1" max="10" value="2" required />
+</div>
+</div>
+​<div class="field" style="margin-top: 1rem;">
+<label for="notes">Special Requests (Optional)</label>
+<textarea id="notes" rows="2" placeholder="Arrival time in Nyanchwa, extra bedding, etc."></textarea>
+</div>
+​<div class="summary-box">
+<div>
+<div style="font-size: 0.85rem; color: var(--text-muted);">Estimated Total</div>
+<div id="totalDisplay" style="font-size: 1.25rem; font-weight: 800; color: var(--gold-bright);">KES 11,000</div>
+</div>
+<button type="submit" class="btn-gold">Send Booking on WhatsApp (0788245106)</button>
+</div>
+</form>
+</section>
+</main>
+​<footer>
+SERENE STAY AIRBNB'S • Nyanchwa, Kisii, Kenya • Direct WhatsApp Booking: 0788245106
+</footer>
+​<script>
+const EMBEDDED_DATA = {
+brand: {
+name: "SERENE STAY AIRBNB'S",
+location: "Nyanchwa, Kisii, Kenya",
+whatsappDisplay: "0788245106",
+whatsappIntl: "254788245106",
+usdRate: 130
+},
+photos: [
+{ id: "img-13905", file: "13905.jpg", room_type: "Lounge", title: "Nyanchwa Lounge & TV Corner" },
+{ id: "img-13906", file: "13906.jpg", room_type: "Lounge", title: "Gold & Charcoal Cove-Lit Living Room" },
+{ id: "img-13907", file: "13907.jpg", room_type: "Lounge", title: "Brass & Marble Coffee Table Salon" },
+{ id: "img-13909", file: "13909.jpg", room_type: "Lounge", title: "Warm Amber & Grey Velvet Lounge" },
+{ id: "img-13910", file: "13910.jpg", room_type: "Bedroom", title: "Slat-Wall Master Suite" },
+{ id: "img-13911", file: "13911.jpg", room_type: "Lounge", title: "Warm Glow Cozy Living Space" },
+{ id: "img-13912", file: "13912.jpg", room_type: "Lounge", title: "Gold Accent Living & Media Area" },
+{ id: "img-13916", file: "13916.jpg", room_type: "Lounge", title: "Executive Nyanchwa Sitting Room" },
+{ id: "img-13917", file: "13917.jpg", room_type: "Bedroom", title: "Classic Suite with Deep Navy Throw" },
+{ id: "img-13918", file: "13918.jpg", room_type: "Lounge", title: "Family Lounge & Cup-Holder Sofa" }
+],
+properties: [
+{
+id: "nyanchwa-gold-suite",
+name: "Nyanchwa Gold Crest Residence",
+subarea: "Nyanchwa Hill, Kisii",
+priceKes: 5500,
+guests: 4,
+bedrooms: 2,
+photo: "13907.jpg",
+amenities: ["High-Speed Wi-Fi", "Smart TV", "24/7 Security", "Hot Shower"]
+},
+{
+id: "amber-lounge-retreat",
+name: "Amber Velvet Nyanchwa Apartment",
+subarea: "Nyanchwa Estate, Kisii",
+priceKes: 4500,
+guests: 3,
+bedrooms: 1,
+photo: "13909.jpg",
+amenities: ["High-Speed Wi-Fi", "Smart TV", "24/7 Security", "Hot Shower"]
+},
+{
+id: "nyanchwa-family-home",
+name: "Nyanchwa View Family BnB",
+subarea: "Upper Nyanchwa, Kisii",
+priceKes: 6500,
+guests: 5,
+bedrooms: 2,
+photo: "13906.jpg",
+amenities: ["High-Speed Wi-Fi", "Smart TV", "24/7 Security", "Free Parking"]
+}
+]
+};
+​let currency = "KES";
+let siteData = EMBEDDED_DATA;
+​function fallbackSvg(filename) {
+const svg = <svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400"> <rect width="600" height="400" fill="#141419"/> <rect x="18" y="18" width="564" height="364" rx="14" fill="none" stroke="#d4af37" stroke-width="2"/> <text x="300" y="175" text-anchor="middle" fill="#f0cf65" font-family="sans-serif" font-size="22" font-weight="bold">SERENE STAY AIRBNB'S</text> <text x="300" y="210" text-anchor="middle" fill="#f8f7f4" font-family="sans-serif" font-size="18">${filename}</text> <text x="300" y="242" text-anchor="middle" fill="#b3b0a6" font-family="sans-serif" font-size="14">Nyanchwa, Kisii • Place ${filename} in folder</text> </svg>;
+return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+}
+​function attachFallbacks() {
+document.querySelectorAll("img").forEach((img) => {
+const file = img.getAttribute("src");
+img.onerror = () => {
+img.onerror = null;
+img.src = fallbackSvg(file);
+};
+});
+}
+​function formatPrice(kesAmount) {
+if (currency === "USD") {
+const usd = Math.round((kesAmount / siteData.brand.usdRate) * 100) / 100;
+return $${usd.toFixed(2)};
+}
+return KES ${Number(kesAmount).toLocaleString()};
+}
+​function renderProperties() {
+const grid = document.getElementById("propertiesGrid");
+const select = document.getElementById("propertySelect");
+grid.innerHTML = "";
+select.innerHTML = "";
+​siteData.properties.forEach((prop) => {
+const card = document.createElement("article");
+card.className = "card";
+card.innerHTML = <img src="${prop.photo}" alt="${prop.name} in ${prop.subarea}" /> <div class="card-body"> <div class="card-top"> <div class="card-title">${prop.name}</div> <div class="price-tag">${formatPrice(prop.priceKes)} / night</div> </div> <div class="meta">${prop.subarea} • Up to ${prop.guests} guests • ${prop.bedrooms} bed</div> <div class="amenities"> ${prop.amenities.map((a) =><span class="pill">${a}</span>).join("")} </div> <div class="card-footer"> <button type="button" class="btn-gold" style="width:100%; justify-content:center;" onclick="selectProperty('${prop.id}')"> Select &amp; Book </button> </div> </div> ;
+grid.appendChild(card);
+​const opt = document.createElement("option");
+opt.value = prop.id;
+opt.textContent = ${prop.name} (${formatPrice(prop.priceKes)}/night);
+select.appendChild(opt);
+});
+​attachFallbacks();
+updateTotal();
+}
+​function renderGallery() {
+const gallery = document.getElementById("galleryGrid");
+gallery.innerHTML = "";
+siteData.photos.forEach((p) => {
+const item = document.createElement("div");
+item.className = "gallery-item";
+item.innerHTML = <img src="${p.file}" alt="${p.title}" /> <div class="gallery-meta"> <strong>${p.file}</strong> <span>${p.room_type} • ${p.title}</span> </div>;
+gallery.appendChild(item);
+});
+attachFallbacks();
+}
+​window.selectProperty = function (id) {
+document.getElementById("propertySelect").value = id;
+updateTotal();
+document.getElementById("book-now").scrollIntoView({ behavior: "smooth" });
+};
+​function updateTotal() {
+const propId = document.getElementById("propertySelect").value;
+const nights = Math.max(1, parseInt(document.getElementById("nights").value || "1", 10));
+const prop = siteData.properties.find((p) => p.id === propId) || siteData.properties[0];
+const totalKes = prop.priceKes * nights;
+document.getElementById("totalDisplay").textContent = formatPrice(totalKes);
+}
+​document.getElementById("currencyToggle").addEventListener("click", (e) => {
+currency = currency === "KES" ? "USD" : "KES";
+e.target.textContent = Currency: ${currency};
+renderProperties();
+});
+​document.getElementById("propertySelect").addEventListener("change", updateTotal);
+document.getElementById("nights").addEventListener("input", updateTotal);
+​document.getElementById("bookingForm").addEventListener("submit", (e) => {
+e.preventDefault();
+const propId = document.getElementById("propertySelect").value;
+const prop = siteData.properties.find((p) => p.id === propId) || siteData.properties[0];
+const name = document.getElementById("guestName").value.trim();
+const phone = document.getElementById("guestPhone").value.trim();
+const checkIn = document.getElementById("checkIn").value;
+const nights = Math.max(1, parseInt(document.getElementById("nights").value || "1", 10));
+const guests = document.getElementById("guestsCount").value;
+const notes = document.getElementById("notes").value.trim();
+const totalKes = prop.priceKes * nights;
+​const message = [
+*SERENE STAY AIRBNB'S — Booking Request*,
+Location: Nyanchwa, Kisii,
+Residence: ${prop.name} (${prop.subarea}),
+Guest Name: ${name},
+Guest Phone: ${phone},
+Check-in Date: ${checkIn},
+Nights: ${nights},
+Guests: ${guests},
+Estimated Total: KES ${totalKes.toLocaleString()},
+notes ? Notes: ${notes} : Notes: None
+].join("\n");
+​const waUrl = https://wa.me/${siteData.brand.whatsappIntl}?text=${encodeURIComponent(message)};
+window.open(waUrl, "_blank", "noopener,noreferrer");
+});
+​async function init() {
+const today = new Date().toISOString().split("T")[0];
+document.getElementById("checkIn").value = today;
+​try {
+const res = await fetch("listings.json");
+if (res.ok) {
+const loaded = await res.json();
+if (loaded && Array.isArray(loaded.photos) && Array.isArray(loaded.properties)) {
+siteData = {
+brand: {
+name: loaded.brand?.name || EMBEDDED_DATA.brand.name,
+location: loaded.brand?.location || EMBEDDED_DATA.brand.location,
+whatsappDisplay: loaded.brand?.whatsapp_display || EMBEDDED_DATA.brand.whatsappDisplay,
+whatsappIntl: loaded.brand?.whatsapp_intl || EMBEDDED_DATA.brand.whatsappIntl,
+usdRate: loaded.brand?.usd_rate || EMBEDDED_DATA.brand.usdRate
+},
+photos: loaded.photos,
+properties: loaded.properties.map((p) => ({
+id: p.id,
+name: p.name,
+subarea: p.subarea,
+priceKes: p.price_kes,
+guests: p.guests,
+bedrooms: p.bedrooms,
+photo: p.featured_photo,
+amenities: p.amenities || []
+}))
+};
+}
+}
+} catch (_) {
+// Fallback to EMBEDDED_DATA when opened via file:// protocol
+}
+​renderProperties();
+renderGallery();
+attachFallbacks();
+}
+​init();
+</script>
+</body>
+</html>
