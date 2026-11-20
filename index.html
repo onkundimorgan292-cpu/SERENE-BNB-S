@@ -548,7 +548,7 @@
 
   <section class="hero">
     <div class="hero-card">
-      <img src="images/1795203755185.jpg" alt="Serene Stay Airbnb lounge in Nyanchwa, Kisii" />
+      <img src="images/1795203755185.jpg" alt="" />
       <div class="hero-scrim">
         <div class="eyebrow">
           <span class="status-dot" aria-hidden="true"></span>
@@ -673,6 +673,7 @@
           bedrooms: 2,
           rating: "4.9",
           cover: "images/1795203755185.jpg",
+          fallback: "images/1795203772100.jpg",
           features: ["High-Speed Wi-Fi", "Smart TV", "24/7 Security", "Hot Shower", "Free Parking"],
           description: "Refined lounge and quiet bedroom spaces designed for relaxed stays in Nyanchwa, Kisii."
         },
@@ -685,6 +686,7 @@
           bedrooms: 1,
           rating: "4.9",
           cover: "images/1795203763969.jpg",
+          fallback: "images/1795203775185.jpg",
           features: ["High-Speed Wi-Fi", "Smart TV", "24/7 Security", "Hot Shower"],
           description: "Warm lighting, plush seating, and calm rest spaces in a peaceful Nyanchwa setting."
         },
@@ -697,22 +699,23 @@
           bedrooms: 2,
           rating: "4.8",
           cover: "images/1795203750919.jpg",
+          fallback: "images/1795203796704.jpg",
           features: ["High-Speed Wi-Fi", "Smart TV", "24/7 Security", "Hot Shower", "Free Parking"],
           description: "Spacious living room and comfortable bedrooms tailored for families and groups in Kisii."
         }
       ],
       gallery: [
-        { src: "images/1795203755185.jpg", tag: "Living Salon", caption: "Marble & Gold Living Space" },
-        { src: "images/1795203772100.jpg", tag: "Bedroom", caption: "Master Bedroom Suite" },
-        { src: "images/1795203763969.jpg", tag: "Lounge", caption: "Amber & Charcoal Lounge" },
-        { src: "images/1795203750919.jpg", tag: "Living Room", caption: "Cove-Lit Family Living Room" },
-        { src: "images/1795203778895.jpg", tag: "Lounge", caption: "Sunlit Living & Media Area" },
-        { src: "images/1795203781498.jpg", tag: "Sitting Room", caption: "Executive Sitting Area" },
-        { src: "images/1795203793511.jpg", tag: "Bedroom", caption: "Classic Guest Bedroom" },
-        { src: "images/1795203796704.jpg", tag: "Family Lounge", caption: "Relaxed Family Seating" },
-        { src: "images/1795203775185.jpg", tag: "Evening Lounge", caption: "Warm Evening Living Room" },
-        { src: "images/13905.jpg", tag: "Media Lounge", caption: "Sectional Sofa & Smart TV" },
-        { src: "images/1795203857962.jpg", tag: "Suite View", caption: "Nyanchwa Suite Interior" }
+        { src: "images/1795203755185.jpg", fallback: "images/1795203772100.jpg", tag: "Living Salon", caption: "Marble & Gold Living Space" },
+        { src: "images/1795203772100.jpg", fallback: "images/1795203755185.jpg", tag: "Bedroom", caption: "Master Bedroom Suite" },
+        { src: "images/1795203763969.jpg", fallback: "images/1795203775185.jpg", tag: "Lounge", caption: "Amber & Charcoal Lounge" },
+        { src: "images/1795203750919.jpg", fallback: "images/1795203796704.jpg", tag: "Living Room", caption: "Cove-Lit Family Living Room" },
+        { src: "images/1795203778895.jpg", fallback: "images/1795203781498.jpg", tag: "Lounge", caption: "Sunlit Living & Media Area" },
+        { src: "images/1795203781498.jpg", fallback: "images/1795203778895.jpg", tag: "Sitting Room", caption: "Executive Sitting Area" },
+        { src: "images/1795203793511.jpg", fallback: "images/1795203772100.jpg", tag: "Bedroom", caption: "Classic Guest Bedroom" },
+        { src: "images/1795203796704.jpg", fallback: "images/1795203857962.jpg", tag: "Family Lounge", caption: "Relaxed Family Seating" },
+        { src: "images/1795203775185.jpg", fallback: "images/1795203763969.jpg", tag: "Evening Lounge", caption: "Warm Evening Living Room" },
+        { src: "images/13905.jpg", fallback: "images/1795203775185.jpg", tag: "Media Lounge", caption: "Sectional Sofa & Smart TV" },
+        { src: "images/1795203857962.jpg", fallback: "images/1795203796704.jpg", tag: "Suite View", caption: "Nyanchwa Suite Interior" }
       ]
     };
 
@@ -723,6 +726,20 @@
       residences: FALLBACK.residences,
       gallery: FALLBACK.gallery
     };
+
+    function bindSmartImage(img, primarySrc, fallbackSrc) {
+      img.alt = "";
+      img.onerror = () => {
+        if (fallbackSrc && img.dataset.fallbackDone !== "1") {
+          img.dataset.fallbackDone = "1";
+          img.src = fallbackSrc;
+        } else {
+          img.onerror = null;
+          img.style.opacity = "0";
+        }
+      };
+      img.src = primarySrc;
+    }
 
     function money(kes) {
       if (state.currency === "USD") {
@@ -743,7 +760,7 @@
         card.className = "residence-card";
         card.innerHTML = `
           <div class="residence-media">
-            <img src="${item.cover}" alt="${item.name} in ${item.area}" loading="lazy" />
+            <img class="res-img" alt="" />
             <span class="rating-pill">${item.rating} ★</span>
           </div>
           <div class="residence-body">
@@ -763,6 +780,8 @@
             </div>
           </div>
         `;
+        const imgEl = card.querySelector(".res-img");
+        bindSmartImage(imgEl, item.cover, item.fallback || "images/1795203755185.jpg");
         grid.appendChild(card);
 
         const option = document.createElement("option");
@@ -782,15 +801,18 @@
         const el = document.createElement("div");
         el.className = "gallery-tile";
         el.innerHTML = `
-          <img src="${tile.src}" alt="${tile.caption}" loading="lazy" />
+          <img class="gal-img" alt="" />
           <div class="gallery-caption">
             <span>${tile.tag}</span>
             <strong>${tile.caption}</strong>
           </div>
         `;
+        const imgEl = el.querySelector(".gal-img");
+        bindSmartImage(imgEl, tile.src, tile.fallback || "images/1795203775185.jpg");
+
         el.addEventListener("click", () => {
-          document.getElementById("lightboxImg").src = tile.src;
-          document.getElementById("lightboxImg").alt = tile.caption;
+          const activeSrc = imgEl.currentSrc || imgEl.src || tile.src;
+          document.getElementById("lightboxImg").src = activeSrc;
           document.getElementById("lightboxTag").textContent = tile.tag;
           document.getElementById("lightboxTitle").textContent = tile.caption;
           document.getElementById("lightbox").classList.add("open");
@@ -878,6 +900,7 @@
               bedrooms: r.bedrooms,
               rating: r.rating || "4.9",
               cover: r.cover,
+              fallback: r.fallback || "images/1795203755185.jpg",
               features: r.features || [],
               description: r.description || ""
             }));
