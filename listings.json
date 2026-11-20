@@ -7,78 +7,99 @@
     "whatsapp_intl": "254788245106",
     "currency": "KES",
     "usd_rate": 130,
-    "status_dot": "Live • Instant WhatsApp Booking"
+    "status_dot": "Live • Instant WhatsApp Booking",
+    "repository": "SERENE-BNB-S",
+    "branch": "main",
+    "image_folder": "images/"
   },
   "photos": [
     {
-      "id": "img-13905",
-      "file": "13905.jpg",
+      "id": "img-1",
+      "file": "images/13905.jpg",
+      "filename": "13905.jpg",
       "room_type": "Lounge",
       "title": "Nyanchwa Lounge & TV Corner",
       "caption": "Grey L-shaped sectional sofa, round ottoman, and recessed ceiling feature in Nyanchwa, Kisii."
     },
     {
-      "id": "img-13906",
-      "file": "13906.jpg",
+      "id": "img-2",
+      "file": "images/1795203750919.jpg",
+      "filename": "1795203750919.jpg",
       "room_type": "Lounge",
       "title": "Gold & Charcoal Cove-Lit Living Room",
       "caption": "Spacious living room with mustard-gold and grey drapery, plush rug, and ambient ceiling lighting."
     },
     {
-      "id": "img-13907",
-      "file": "13907.jpg",
+      "id": "img-3",
+      "file": "images/1795203755185.jpg",
+      "filename": "1795203755185.jpg",
       "room_type": "Lounge",
       "title": "Brass & Marble Coffee Table Salon",
       "caption": "Twin marble-top tables with gold frames, velvet gold accent pillow, and framed wall mirrors."
     },
     {
-      "id": "img-13909",
-      "file": "13909.jpg",
+      "id": "img-4",
+      "file": "images/1795203763969.jpg",
+      "filename": "1795203763969.jpg",
       "room_type": "Lounge",
       "title": "Warm Amber & Grey Velvet Lounge",
       "caption": "Tufted grey seating paired with rich amber-gold throws, floor lamp, and warm accent lighting."
     },
     {
-      "id": "img-13910",
-      "file": "13910.jpg",
+      "id": "img-5",
+      "file": "images/1795203772100.jpg",
+      "filename": "1795203772100.jpg",
       "room_type": "Bedroom",
       "title": "Slat-Wall Master Suite",
       "caption": "Plush upholstered bed against a vertical dark slat headboard, ring chandelier, and crisp linens."
     },
     {
-      "id": "img-13911",
-      "file": "13911.jpg",
+      "id": "img-6",
+      "file": "images/1795203775185.jpg",
+      "filename": "1795203775185.jpg",
       "room_type": "Lounge",
       "title": "Warm Glow Cozy Living Space",
       "caption": "Dark sofa, round mirror, sculptural vase, and warm evening lighting for quiet stays in Nyanchwa."
     },
     {
-      "id": "img-13912",
-      "file": "13912.jpg",
+      "id": "img-7",
+      "file": "images/1795203778895.jpg",
+      "filename": "1795203778895.jpg",
       "room_type": "Lounge",
       "title": "Gold Accent Living & Media Area",
       "caption": "Gold decor accents, white media console, and sunlit tiled floors in Nyanchwa, Kisii."
     },
     {
-      "id": "img-13916",
-      "file": "13916.jpg",
+      "id": "img-8",
+      "file": "images/1795203781498.jpg",
+      "filename": "1795203781498.jpg",
       "room_type": "Lounge",
       "title": "Executive Nyanchwa Sitting Room",
       "caption": "Twin armchairs, gold-rimmed coffee tables, abstract canvas art, and pendant lighting."
     },
     {
-      "id": "img-13917",
-      "file": "13917.jpg",
+      "id": "img-9",
+      "file": "images/1795203793511.jpg",
+      "filename": "1795203793511.jpg",
       "room_type": "Bedroom",
       "title": "Classic Suite with Deep Navy Throw",
       "caption": "Spacious bedroom with wardrobe storage, full-length mirror, and gold-trimmed curtains."
     },
     {
-      "id": "img-13918",
-      "file": "13918.jpg",
+      "id": "img-10",
+      "file": "images/1795203796704.jpg",
+      "filename": "1795203796704.jpg",
       "room_type": "Lounge",
       "title": "Family Lounge & Cup-Holder Sofa",
       "caption": "Comfortable family seating with built-in console cup holders, mounted TV, and bright curtains."
+    },
+    {
+      "id": "img-11",
+      "file": "images/1795203857962.jpg",
+      "filename": "1795203857962.jpg",
+      "room_type": "Lounge",
+      "title": "Nyanchwa Signature Suite View",
+      "caption": "Additional interior view in Nyanchwa, Kisii for SERENE STAY AIRBNB'S."
     }
   ],
   "properties": [
@@ -92,12 +113,12 @@
       "bedrooms": 2,
       "bathrooms": 2,
       "rating": "4.95",
-      "featured_photo": "13907.jpg",
+      "featured_photo": "images/1795203755185.jpg",
       "gallery": [
-        "13907.jpg",
-        "13910.jpg",
-        "13912.jpg",
-        "13916.jpg"
+        "images/1795203755185.jpg",
+        "images/1795203772100.jpg",
+        "images/1795203778895.jpg",
+        "images/1795203781498.jpg"
       ],
       "amenities": [
         "High-Speed Wi-Fi",
@@ -118,11 +139,11 @@
       "bedrooms": 1,
       "bathrooms": 1,
       "rating": "4.90",
-      "featured_photo": "13909.jpg",
+      "featured_photo": "images/1795203763969.jpg",
       "gallery": [
-        "13909.jpg",
-        "13911.jpg",
-        "13917.jpg"
+        "images/1795203763969.jpg",
+        "images/1795203775185.jpg",
+        "images/1795203793511.jpg"
       ],
       "amenities": [
         "High-Speed Wi-Fi",
@@ -143,12 +164,12 @@
       "bedrooms": 2,
       "bathrooms": 2,
       "rating": "4.92",
-      "featured_photo": "13906.jpg",
+      "featured_photo": "images/1795203750919.jpg",
       "gallery": [
-        "13906.jpg",
-        "13905.jpg",
-        "13918.jpg",
-        "13917.jpg"
+        "images/1795203750919.jpg",
+        "images/13905.jpg",
+        "images/1795203796704.jpg",
+        "images/1795203857962.jpg"
       ],
       "amenities": [
         "High-Speed Wi-Fi",
