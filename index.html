@@ -3,626 +3,896 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SERENE STAY AIRBNB'S — Nyanchwa, Kisii</title>
+  <title>SERENE STAY AIRBNB'S | Nyanchwa, Kisii</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-black: #09090b;
-      --bg-card: #121216;
-      --bg-elevated: #19191f;
+      --bg: #08080a;
+      --surface: #111115;
+      --surface-2: #17171d;
       --gold: #d4af37;
-      --gold-bright: #f0cf65;
-      --gold-dim: rgba(212, 175, 55, 0.16);
-      --text-main: #f8f7f4;
-      --text-muted: #b3b0a6;
-      --border-gold: rgba(212, 175, 55, 0.32);
-      --live-green: #22c55e;
+      --gold-light: #f2d36b;
+      --gold-soft: rgba(212, 175, 55, 0.14);
+      --text: #faf8f3;
+      --muted: #b8b3a6;
+      --line: rgba(212, 175, 55, 0.24);
+      --live: #22c55e;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-black);
-      color: var(--text-main);
-      line-height: 1.55;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    header {
+    h1, h2, .serif {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .topbar {
       position: sticky;
       top: 0;
-      z-index: 40;
-      background: rgba(9, 9, 11, 0.94);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-gold);
+      z-index: 50;
+      background: rgba(8, 8, 10, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
     }
 
-    .nav-wrap {
-      max-width: 1180px;
+    .topbar-inner {
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0.9rem 1.25rem;
+      padding: 0.95rem 1.25rem;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 0.85rem;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
-    .brand-box { display: flex; align-items: center; gap: 0.7rem; }
-    .live-dot {
-      width: 11px;
-      height: 11px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background: var(--live-green);
-      box-shadow: 0 0 10px var(--live-green);
+      background: var(--live);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
       flex-shrink: 0;
     }
 
-    .brand-title { font-size: 1.08rem; font-weight: 800; letter-spacing: 0.08em; color: var(--gold-bright); }
-    .brand-sub { font-size: 0.78rem; color: var(--text-muted); }
+    .brand-name {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--gold-light);
+    }
 
-    .nav-actions { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
+    .brand-place {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      font-size: 0.88rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      opacity: 0.85;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+      opacity: 1;
+    }
+
+    .header-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
     .btn-gold {
-      background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
       color: #09090b;
       border: none;
-      border-radius: 8px;
-      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      padding: 0.62rem 1.15rem;
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       cursor: pointer;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      justify-content: center;
+      transition: transform 0.18s, box-shadow 0.18s;
     }
 
-    .btn-outline-gold {
+    .btn-gold:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+    }
+
+    .btn-ghost {
       background: transparent;
-      color: var(--gold-bright);
-      border: 1px solid var(--border-gold);
-      border-radius: 8px;
-      padding: 0.52rem 0.85rem;
+      color: var(--gold-light);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.58rem 1rem;
       font-weight: 600;
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      background: var(--gold-soft);
+      border-color: var(--gold);
     }
 
     .hero {
-      max-width: 1180px;
-      margin: 1.5rem auto 0;
-      padding: 2rem 1.5rem;
-      background: linear-gradient(145deg, #141419 0%, #0d0d10 65%, rgba(212, 175, 55, 0.12) 100%);
-      border: 1px solid var(--border-gold);
-      border-radius: 16px;
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 1.5rem;
-      align-items: center;
+      max-width: 1200px;
+      margin: 1.75rem auto 0;
+      padding: 0 1.25rem;
     }
 
-    .hero-badge {
+    .hero-card {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 440px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-scrim {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 2.5rem 2rem 2rem;
+      background: linear-gradient(180deg, rgba(8, 8, 10, 0.08) 0%, rgba(8, 8, 10, 0.78) 45%, rgba(8, 8, 10, 0.96) 100%);
+    }
+
+    .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      background: var(--gold-dim);
-      border: 1px solid var(--border-gold);
-      color: var(--gold-bright);
-      padding: 0.3rem 0.75rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 600;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      line-height: 1.04;
+      max-width: 16ch;
       margin-bottom: 0.85rem;
     }
 
-    .hero h1 { font-size: clamp(1.75rem, 3.6vw, 2.75rem); line-height: 1.15; margin-bottom: 0.75rem; }
-    .hero h1 span { color: var(--gold-bright); }
-    .hero p { color: var(--text-muted); max-width: 58ch; margin-bottom: 1.2rem; }
-    .hero-cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-
-    .hero-preview-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-gold);
-      border-radius: 12px;
-      overflow: hidden;
+    .hero p {
+      color: var(--muted);
+      max-width: 48ch;
+      font-size: 0.98rem;
+      margin-bottom: 1.35rem;
     }
 
-    .hero-preview-card img { width: 100%; height: 245px; object-fit: cover; display: block; }
-    .hero-preview-caption {
-      padding: 0.8rem 1rem;
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3.5rem 1.25rem 0;
+    }
+
+    .section-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      font-size: 0.82rem;
-      color: var(--gold-bright);
-      border-top: 1px solid rgba(212, 175, 55, 0.18);
+      align-items: flex-end;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.6rem;
     }
 
-    main { max-width: 1180px; margin: 0 auto; padding: 2rem 1.25rem 3.5rem; }
-    .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1rem; margin-bottom: 1.25rem; }
-    .section-head h2 { font-size: 1.45rem; color: var(--gold-bright); }
-    .section-head p { color: var(--text-muted); font-size: 0.9rem; }
+    .section-header h2 {
+      font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+      color: var(--text);
+      line-height: 1.1;
+    }
 
-    .grid-3 {
+    .section-header p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      max-width: 44ch;
+    }
+
+    .residences-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.5rem;
     }
 
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-gold);
-      border-radius: 14px;
+    .residence-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      transition: transform 0.22s, border-color 0.22s;
     }
 
-    .card img { width: 100%; height: 220px; object-fit: cover; display: block; background: var(--bg-elevated); }
-    .card-body { padding: 1.05rem; display: flex; flex-direction: column; flex: 1; gap: 0.65rem; }
-    .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; }
-    .card-title { font-size: 1.08rem; font-weight: 700; }
-    .price-tag { color: var(--gold-bright); font-weight: 800; font-size: 0.98rem; white-space: nowrap; }
-    .meta { font-size: 0.83rem; color: var(--text-muted); }
-    .amenities { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .pill {
-      font-size: 0.74rem;
-      padding: 0.22rem 0.55rem;
-      border-radius: 999px;
-      background: var(--gold-dim);
-      color: var(--gold-bright);
-      border: 1px solid rgba(212, 175, 55, 0.25);
+    .residence-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(242, 211, 107, 0.55);
     }
 
-    .card-footer { margin-top: auto; padding-top: 0.5rem; }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 1rem;
-    }
-
-    .gallery-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border-gold);
-      border-radius: 12px;
+    .residence-media {
+      position: relative;
+      height: 240px;
+      background: var(--surface-2);
       overflow: hidden;
     }
 
-    .gallery-item img { width: 100%; height: 170px; object-fit: cover; display: block; background: var(--bg-elevated); }
-    .gallery-meta { padding: 0.65rem 0.75rem; font-size: 0.78rem; word-break: break-all; }
-    .gallery-meta strong { display: block; color: var(--gold-bright); margin-bottom: 0.15rem; }
-    .gallery-meta span { color: var(--text-muted); word-break: normal; }
+    .residence-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-    .booking-panel {
-      margin-top: 2.5rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-gold);
+    .rating-pill {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      background: rgba(8, 8, 10, 0.82);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--line);
+      color: var(--gold-light);
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .residence-body {
+      padding: 1.3rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 0.75rem;
+    }
+
+    .residence-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+
+    .residence-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .residence-rate {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      white-space: nowrap;
+    }
+
+    .residence-rate small {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .residence-specs {
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .residence-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .feature-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .feature-tag {
+      font-size: 0.75rem;
+      color: var(--gold-light);
+      background: var(--gold-soft);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 0.24rem 0.62rem;
+      border-radius: 999px;
+    }
+
+    .residence-action {
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .gallery-tile {
+      position: relative;
       border-radius: 16px;
-      padding: 1.5rem;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      aspect-ratio: 4 / 3;
+      cursor: pointer;
+    }
+
+    .gallery-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .gallery-tile:hover img {
+      transform: scale(1.04);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 1.4rem 0.85rem 0.75rem;
+      background: linear-gradient(180deg, transparent 0%, rgba(8, 8, 10, 0.92) 100%);
+    }
+
+    .gallery-caption span {
+      display: block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold-light);
+    }
+
+    .gallery-caption strong {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .booking-box {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 2rem;
+      margin-bottom: 3rem;
     }
 
     .form-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 1rem;
-      margin-top: 1rem;
+      margin-top: 1.25rem;
     }
 
-    .field label { display: block; font-size: 0.82rem; color: var(--gold-bright); margin-bottom: 0.35rem; font-weight: 600; }
-    .field input, .field select, .field textarea {
+    .input-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 0.4rem;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
       width: 100%;
-      background: var(--bg-elevated);
-      color: var(--text-main);
-      border: 1px solid var(--border-gold);
-      border-radius: 8px;
-      padding: 0.65rem 0.75rem;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.72rem 0.85rem;
+      color: var(--text);
+      font-family: inherit;
       font-size: 0.9rem;
     }
 
-    .summary-box {
-      margin-top: 1.15rem;
-      padding: 1rem;
-      border-radius: 10px;
-      background: var(--bg-elevated);
-      border: 1px dashed var(--border-gold);
+    .input-group input:focus,
+    .input-group select:focus,
+    .input-group textarea:focus {
+      outline: none;
+      border-color: var(--gold-light);
+    }
+
+    .checkout-bar {
+      margin-top: 1.4rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
       display: flex;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .total-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .total-amount {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      max-width: 900px;
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .lightbox-inner img {
+      width: 100%;
+      max-height: 72vh;
+      object-fit: cover;
+      display: block;
+    }
+
+    .lightbox-bar {
+      padding: 0.9rem 1.2rem;
+      display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
     }
 
     footer {
-      border-top: 1px solid var(--border-gold);
-      padding: 1.4rem 1.25rem;
+      border-top: 1px solid var(--line);
+      padding: 1.75rem 1.25rem;
       text-align: center;
-      color: var(--text-muted);
+      color: var(--muted);
       font-size: 0.84rem;
     }
 
-    @media (max-width: 820px) { .hero { grid-template-columns: 1fr; } }
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .hero-card { min-height: 390px; }
+      .hero-scrim { padding: 1.75rem 1.25rem 1.35rem; }
+      .booking-box { padding: 1.35rem; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <div class="nav-wrap">
-      <div class="brand-box">
-        <span class="live-dot" title="Live WhatsApp Booking Active"></span>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#" class="brand">
+        <span class="status-dot" aria-hidden="true"></span>
         <div>
-          <div class="brand-title">SERENE STAY AIRBNB'S</div>
-          <div class="brand-sub">Nyanchwa, Kisii • WhatsApp: 0788245106</div>
+          <div class="brand-name">SERENE STAY AIRBNB'S</div>
+          <div class="brand-place">Nyanchwa, Kisii</div>
         </div>
-      </div>
-      <div class="nav-actions">
-        <button type="button" class="btn-outline-gold" id="currencyToggle">Currency: KES</button>
-        <a href="#book-now" class="btn-gold">Book on WhatsApp</a>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#residences">Residences</a>
+        <a href="#spaces">Spaces</a>
+        <a href="#reserve">Reserve</a>
+      </nav>
+
+      <div class="header-cta">
+        <button type="button" class="btn-ghost" id="currencyBtn">KES</button>
+        <a href="#reserve" class="btn-gold">Book on WhatsApp</a>
       </div>
     </div>
   </header>
 
   <section class="hero">
-    <div>
-      <div class="hero-badge">
-        <span class="live-dot"></span>
-        <span>Live • Nyanchwa, Kisii Airbnb Stays</span>
-      </div>
-      <h1>Black &amp; Gold Comfort in <span>Nyanchwa, Kisii</span></h1>
-      <p>
-        Book verified stays in Nyanchwa directly online and confirm instantly via WhatsApp on
-        <strong>0788245106</strong>. Images load from <code>images/</code> on your site and fall back
-        to GitHub raw URLs if previewed elsewhere.
-      </p>
-      <div class="hero-cta-row">
-        <a href="#stays" class="btn-gold">Explore Stays</a>
-        <a href="#photo-gallery" class="btn-outline-gold">View All Photos</a>
-      </div>
-    </div>
-
-    <div class="hero-preview-card">
-      <img
-        data-local="images/1795203755185.jpg"
-        src="images/1795203755185.jpg"
-        alt="Nyanchwa lounge interior in Kisii"
-      />
-      <div class="hero-preview-caption">
-        <span>images/1795203755185.jpg</span>
-        <span>0788245106</span>
+    <div class="hero-card">
+      <img src="images/1795203755185.jpg" alt="Serene Stay Airbnb lounge in Nyanchwa, Kisii" />
+      <div class="hero-scrim">
+        <div class="eyebrow">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>Nyanchwa, Kisii</span>
+        </div>
+        <h1>Calm, refined stays in Nyanchwa.</h1>
+        <p>
+          Thoughtfully furnished apartments and family residences in Nyanchwa, Kisii with direct
+          WhatsApp reservations on 0788245106.
+        </p>
+        <div class="hero-actions">
+          <a href="#residences" class="btn-gold">View Residences</a>
+          <a href="#reserve" class="btn-ghost">Reserve Stay</a>
+        </div>
       </div>
     </div>
   </section>
 
   <main>
-    <section id="stays">
-      <div class="section-head">
+    <section id="residences" class="container">
+      <div class="section-header">
         <div>
-          <h2>Nyanchwa Residences</h2>
-          <p>Select any stay to pre-fill your WhatsApp booking request for 0788245106.</p>
+          <h2>Curated Stays in Nyanchwa</h2>
         </div>
+        <p>Select a residence to prepare your booking details for WhatsApp confirmation.</p>
       </div>
-      <div class="grid-3" id="propertiesGrid"></div>
+      <div class="residences-grid" id="residencesGrid"></div>
     </section>
 
-    <section id="photo-gallery">
-      <div class="section-head">
+    <section id="spaces" class="container">
+      <div class="section-header">
         <div>
-          <h2>Nyanchwa Photo Gallery (SERENE-BNB-S / images/)</h2>
-          <p>Tries local <code>images/&lt;file&gt;</code> first, then <code>raw.githubusercontent.com/onkundimorgan292-cpu/SERENE-BNB-S/main/images/&lt;file&gt;</code>.</p>
+          <h2>Inside Our Spaces</h2>
         </div>
+        <p>Living areas, lounges, and bedrooms across Nyanchwa, Kisii.</p>
       </div>
       <div class="gallery-grid" id="galleryGrid"></div>
     </section>
 
-    <section id="book-now" class="booking-panel">
-      <div class="section-head">
-        <div>
-          <h2>Online Booking via WhatsApp (0788245106)</h2>
-          <p>Fill your details below and click <strong>Send Booking on WhatsApp</strong> to open a pre-filled WhatsApp chat to <strong>0788245106</strong> (+254788245106).</p>
-        </div>
-      </div>
-
-      <form id="bookingForm">
-        <div class="form-grid">
-          <div class="field">
-            <label for="propertySelect">Residence in Nyanchwa</label>
-            <select id="propertySelect"></select>
-          </div>
-          <div class="field">
-            <label for="guestName">Full Name</label>
-            <input type="text" id="guestName" placeholder="Your full name" required />
-          </div>
-          <div class="field">
-            <label for="guestPhone">Your Phone / WhatsApp</label>
-            <input type="tel" id="guestPhone" placeholder="07XX XXX XXX" required />
-          </div>
-          <div class="field">
-            <label for="checkIn">Check-in Date</label>
-            <input type="date" id="checkIn" required />
-          </div>
-          <div class="field">
-            <label for="nights">Number of Nights</label>
-            <input type="number" id="nights" min="1" max="30" value="2" required />
-          </div>
-          <div class="field">
-            <label for="guestsCount">Guests</label>
-            <input type="number" id="guestsCount" min="1" max="10" value="2" required />
-          </div>
-        </div>
-
-        <div class="field" style="margin-top: 1rem;">
-          <label for="notes">Special Requests (Optional)</label>
-          <textarea id="notes" rows="2" placeholder="Arrival time in Nyanchwa, extra bedding, etc."></textarea>
-        </div>
-
-        <div class="summary-box">
+    <section id="reserve" class="container">
+      <div class="booking-box">
+        <div class="section-header" style="margin-bottom: 0.5rem;">
           <div>
-            <div style="font-size: 0.85rem; color: var(--text-muted);">Estimated Total</div>
-            <div id="totalDisplay" style="font-size: 1.25rem; font-weight: 800; color: var(--gold-bright);">KES 11,000</div>
+            <h2>Reserve via WhatsApp</h2>
           </div>
-          <button type="submit" class="btn-gold">Send Booking on WhatsApp (0788245106)</button>
+          <p>Direct booking line: 0788245106</p>
         </div>
-      </form>
+
+        <form id="reserveForm">
+          <div class="form-grid">
+            <div class="input-group">
+              <label for="residenceSelect">Residence</label>
+              <select id="residenceSelect"></select>
+            </div>
+            <div class="input-group">
+              <label for="guestName">Full Name</label>
+              <input type="text" id="guestName" placeholder="Enter your name" required />
+            </div>
+            <div class="input-group">
+              <label for="guestPhone">Phone Number</label>
+              <input type="tel" id="guestPhone" placeholder="07XX XXX XXX" required />
+            </div>
+            <div class="input-group">
+              <label for="checkinDate">Check-In Date</label>
+              <input type="date" id="checkinDate" required />
+            </div>
+            <div class="input-group">
+              <label for="nightsInput">Nights</label>
+              <input type="number" id="nightsInput" min="1" max="60" value="2" required />
+            </div>
+            <div class="input-group">
+              <label for="guestsInput">Guests</label>
+              <input type="number" id="guestsInput" min="1" max="12" value="2" required />
+            </div>
+          </div>
+
+          <div class="input-group" style="margin-top: 1rem;">
+            <label for="guestNotes">Notes</label>
+            <textarea id="guestNotes" rows="2" placeholder="Estimated arrival time or preferences"></textarea>
+          </div>
+
+          <div class="checkout-bar">
+            <div>
+              <div class="total-label">Estimated Stay Total</div>
+              <div class="total-amount" id="totalAmount">KES 11,000</div>
+            </div>
+            <button type="submit" class="btn-gold">Continue to WhatsApp</button>
+          </div>
+        </form>
+      </div>
     </section>
   </main>
 
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <div class="lightbox-inner">
+      <img id="lightboxImg" src="" alt="" />
+      <div class="lightbox-bar">
+        <div>
+          <div id="lightboxTag" style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold-light);"></div>
+          <div id="lightboxTitle" style="font-weight:600;"></div>
+        </div>
+        <button type="button" class="btn-ghost" id="closeLightbox">Close</button>
+      </div>
+    </div>
+  </div>
+
   <footer>
-    SERENE STAY AIRBNB'S • Nyanchwa, Kisii, Kenya • Direct WhatsApp Booking: 0788245106
+    SERENE STAY AIRBNB'S • Nyanchwa, Kisii • WhatsApp: 0788245106
   </footer>
 
   <script>
-    const RAW_BASE = "https://raw.githubusercontent.com/onkundimorgan292-cpu/SERENE-BNB-S/main/";
-
-    const EMBEDDED_DATA = {
-      brand: {
-        name: "SERENE STAY AIRBNB'S",
-        location: "Nyanchwa, Kisii, Kenya",
-        whatsappDisplay: "0788245106",
-        whatsappIntl: "254788245106",
-        usdRate: 130
-      },
-      photos: [
-        { id: "img-1", file: "images/13905.jpg", room_type: "Lounge", title: "Nyanchwa Lounge & TV Corner" },
-        { id: "img-2", file: "images/1795203750919.jpg", room_type: "Lounge", title: "Gold & Charcoal Cove-Lit Living Room" },
-        { id: "img-3", file: "images/1795203755185.jpg", room_type: "Lounge", title: "Brass & Marble Coffee Table Salon" },
-        { id: "img-4", file: "images/1795203763969.jpg", room_type: "Lounge", title: "Warm Amber & Grey Velvet Lounge" },
-        { id: "img-5", file: "images/1795203772100.jpg", room_type: "Bedroom", title: "Slat-Wall Master Suite" },
-        { id: "img-6", file: "images/1795203775185.jpg", room_type: "Lounge", title: "Warm Glow Cozy Living Space" },
-        { id: "img-7", file: "images/1795203778895.jpg", room_type: "Lounge", title: "Gold Accent Living & Media Area" },
-        { id: "img-8", file: "images/1795203781498.jpg", room_type: "Lounge", title: "Executive Nyanchwa Sitting Room" },
-        { id: "img-9", file: "images/1795203793511.jpg", room_type: "Bedroom", title: "Classic Suite with Deep Navy Throw" },
-        { id: "img-10", file: "images/1795203796704.jpg", room_type: "Lounge", title: "Family Lounge & Cup-Holder Sofa" },
-        { id: "img-11", file: "images/1795203857962.jpg", room_type: "Lounge", title: "Nyanchwa Signature Suite View" }
-      ],
-      properties: [
+    const FALLBACK = {
+      whatsapp: "254788245106",
+      usdRate: 130,
+      residences: [
         {
-          id: "nyanchwa-gold-suite",
-          name: "Nyanchwa Gold Crest Residence",
-          subarea: "Nyanchwa Hill, Kisii",
-          priceKes: 5500,
+          id: "nyanchwa-gold-residence",
+          name: "Nyanchwa Gold Crest Suite",
+          area: "Nyanchwa, Kisii",
+          rateKes: 5500,
           guests: 4,
           bedrooms: 2,
-          photo: "images/1795203755185.jpg",
-          amenities: ["High-Speed Wi-Fi", "Smart TV", "24/7 Security", "Hot Shower"]
+          rating: "4.9",
+          cover: "images/1795203755185.jpg",
+          features: ["High-Speed Wi-Fi", "Smart TV", "24/7 Security", "Hot Shower", "Free Parking"],
+          description: "Refined lounge and quiet bedroom spaces designed for relaxed stays in Nyanchwa, Kisii."
         },
         {
-          id: "amber-lounge-retreat",
-          name: "Amber Velvet Nyanchwa Apartment",
-          subarea: "Nyanchwa Estate, Kisii",
-          priceKes: 4500,
+          id: "amber-lounge-apartment",
+          name: "Amber Velvet Apartment",
+          area: "Nyanchwa, Kisii",
+          rateKes: 4500,
           guests: 3,
           bedrooms: 1,
-          photo: "images/1795203763969.jpg",
-          amenities: ["High-Speed Wi-Fi", "Smart TV", "24/7 Security", "Hot Shower"]
+          rating: "4.9",
+          cover: "images/1795203763969.jpg",
+          features: ["High-Speed Wi-Fi", "Smart TV", "24/7 Security", "Hot Shower"],
+          description: "Warm lighting, plush seating, and calm rest spaces in a peaceful Nyanchwa setting."
         },
         {
-          id: "nyanchwa-family-home",
-          name: "Nyanchwa View Family BnB",
-          subarea: "Upper Nyanchwa, Kisii",
-          priceKes: 6500,
+          id: "nyanchwa-family-retreat",
+          name: "Nyanchwa Family Residence",
+          area: "Nyanchwa, Kisii",
+          rateKes: 6500,
           guests: 5,
           bedrooms: 2,
-          photo: "images/1795203750919.jpg",
-          amenities: ["High-Speed Wi-Fi", "Smart TV", "24/7 Security", "Free Parking"]
+          rating: "4.8",
+          cover: "images/1795203750919.jpg",
+          features: ["High-Speed Wi-Fi", "Smart TV", "24/7 Security", "Hot Shower", "Free Parking"],
+          description: "Spacious living room and comfortable bedrooms tailored for families and groups in Kisii."
         }
+      ],
+      gallery: [
+        { src: "images/1795203755185.jpg", tag: "Living Salon", caption: "Marble & Gold Living Space" },
+        { src: "images/1795203772100.jpg", tag: "Bedroom", caption: "Master Bedroom Suite" },
+        { src: "images/1795203763969.jpg", tag: "Lounge", caption: "Amber & Charcoal Lounge" },
+        { src: "images/1795203750919.jpg", tag: "Living Room", caption: "Cove-Lit Family Living Room" },
+        { src: "images/1795203778895.jpg", tag: "Lounge", caption: "Sunlit Living & Media Area" },
+        { src: "images/1795203781498.jpg", tag: "Sitting Room", caption: "Executive Sitting Area" },
+        { src: "images/1795203793511.jpg", tag: "Bedroom", caption: "Classic Guest Bedroom" },
+        { src: "images/1795203796704.jpg", tag: "Family Lounge", caption: "Relaxed Family Seating" },
+        { src: "images/1795203775185.jpg", tag: "Evening Lounge", caption: "Warm Evening Living Room" },
+        { src: "images/13905.jpg", tag: "Media Lounge", caption: "Sectional Sofa & Smart TV" },
+        { src: "images/1795203857962.jpg", tag: "Suite View", caption: "Nyanchwa Suite Interior" }
       ]
     };
 
-    let currency = "KES";
-    let siteData = EMBEDDED_DATA;
+    let state = {
+      currency: "KES",
+      whatsapp: FALLBACK.whatsapp,
+      usdRate: FALLBACK.usdRate,
+      residences: FALLBACK.residences,
+      gallery: FALLBACK.gallery
+    };
 
-    function toRemoteUrl(relPath) {
-      const clean = String(relPath || "").replace(/^\.?\//, "");
-      return RAW_BASE + clean;
-    }
-
-    function fallbackSvg(filename) {
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
-        <rect width="600" height="400" fill="#141419"/>
-        <rect x="18" y="18" width="564" height="364" rx="14" fill="none" stroke="#d4af37" stroke-width="2"/>
-        <text x="300" y="175" text-anchor="middle" fill="#f0cf65" font-family="sans-serif" font-size="22" font-weight="bold">SERENE STAY AIRBNB'S</text>
-        <text x="300" y="210" text-anchor="middle" fill="#f8f7f4" font-family="sans-serif" font-size="16">${filename}</text>
-        <text x="300" y="242" text-anchor="middle" fill="#b3b0a6" font-family="sans-serif" font-size="13">Nyanchwa, Kisii • images/ folder</text>
-      </svg>`;
-      return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
-    }
-
-    function wireImageChain(img, localPath) {
-      const remoteUrl = toRemoteUrl(localPath);
-      img.dataset.triedRemote = "0";
-      img.onerror = () => {
-        if (img.dataset.triedRemote === "0") {
-          img.dataset.triedRemote = "1";
-          img.src = remoteUrl;
-        } else {
-          img.onerror = null;
-          img.src = fallbackSvg(localPath);
-        }
-      };
-      img.src = localPath;
-    }
-
-    function attachAllImageChains() {
-      document.querySelectorAll("img").forEach((img) => {
-        const localPath = img.getAttribute("data-local") || img.getAttribute("src");
-        if (localPath) wireImageChain(img, localPath);
-      });
-    }
-
-    function formatPrice(kesAmount) {
-      if (currency === "USD") {
-        const usd = Math.round((kesAmount / siteData.brand.usdRate) * 100) / 100;
-        return `$${usd.toFixed(2)}`;
+    function money(kes) {
+      if (state.currency === "USD") {
+        const val = Math.round((kes / state.usdRate) * 100) / 100;
+        return `$${val.toFixed(2)}`;
       }
-      return `KES ${Number(kesAmount).toLocaleString()}`;
+      return `KES ${Number(kes).toLocaleString()}`;
     }
 
-    function renderProperties() {
-      const grid = document.getElementById("propertiesGrid");
-      const select = document.getElementById("propertySelect");
+    function renderResidences() {
+      const grid = document.getElementById("residencesGrid");
+      const select = document.getElementById("residenceSelect");
       grid.innerHTML = "";
       select.innerHTML = "";
 
-      siteData.properties.forEach((prop) => {
+      state.residences.forEach((item) => {
         const card = document.createElement("article");
-        card.className = "card";
+        card.className = "residence-card";
         card.innerHTML = `
-          <img data-local="${prop.photo}" alt="${prop.name} in ${prop.subarea}" />
-          <div class="card-body">
-            <div class="card-top">
-              <div class="card-title">${prop.name}</div>
-              <div class="price-tag">${formatPrice(prop.priceKes)} / night</div>
+          <div class="residence-media">
+            <img src="${item.cover}" alt="${item.name} in ${item.area}" loading="lazy" />
+            <span class="rating-pill">${item.rating} ★</span>
+          </div>
+          <div class="residence-body">
+            <div class="residence-top">
+              <div class="residence-title">${item.name}</div>
+              <div class="residence-rate">${money(item.rateKes)} <small>/ night</small></div>
             </div>
-            <div class="meta">${prop.subarea} • Up to ${prop.guests} guests • ${prop.bedrooms} bed</div>
-            <div class="amenities">
-              ${prop.amenities.map((a) => `<span class="pill">${a}</span>`).join("")}
+            <div class="residence-specs">${item.area} • ${item.bedrooms} Bed • Up to ${item.guests} Guests</div>
+            <p class="residence-desc">${item.description}</p>
+            <div class="feature-tags">
+              ${item.features.map((f) => `<span class="feature-tag">${f}</span>`).join("")}
             </div>
-            <div class="card-footer">
-              <button type="button" class="btn-gold" style="width:100%; justify-content:center;" onclick="selectProperty('${prop.id}')">
-                Select &amp; Book
+            <div class="residence-action">
+              <button type="button" class="btn-gold" style="width:100%;" onclick="chooseResidence('${item.id}')">
+                Reserve This Stay
               </button>
             </div>
           </div>
         `;
         grid.appendChild(card);
 
-        const opt = document.createElement("option");
-        opt.value = prop.id;
-        opt.textContent = `${prop.name} (${formatPrice(prop.priceKes)}/night)`;
-        select.appendChild(opt);
+        const option = document.createElement("option");
+        option.value = item.id;
+        option.textContent = `${item.name} (${money(item.rateKes)}/night)`;
+        select.appendChild(option);
       });
 
-      attachAllImageChains();
-      updateTotal();
+      updateEstimate();
     }
 
     function renderGallery() {
-      const gallery = document.getElementById("galleryGrid");
-      gallery.innerHTML = "";
-      siteData.photos.forEach((p) => {
-        const item = document.createElement("div");
-        item.className = "gallery-item";
-        item.innerHTML = `
-          <img data-local="${p.file}" alt="${p.title}" />
-          <div class="gallery-meta">
-            <strong>${p.file}</strong>
-            <span>${p.room_type} • ${p.title}</span>
+      const grid = document.getElementById("galleryGrid");
+      grid.innerHTML = "";
+
+      state.gallery.forEach((tile) => {
+        const el = document.createElement("div");
+        el.className = "gallery-tile";
+        el.innerHTML = `
+          <img src="${tile.src}" alt="${tile.caption}" loading="lazy" />
+          <div class="gallery-caption">
+            <span>${tile.tag}</span>
+            <strong>${tile.caption}</strong>
           </div>
         `;
-        gallery.appendChild(item);
+        el.addEventListener("click", () => {
+          document.getElementById("lightboxImg").src = tile.src;
+          document.getElementById("lightboxImg").alt = tile.caption;
+          document.getElementById("lightboxTag").textContent = tile.tag;
+          document.getElementById("lightboxTitle").textContent = tile.caption;
+          document.getElementById("lightbox").classList.add("open");
+        });
+        grid.appendChild(el);
       });
-      attachAllImageChains();
     }
 
-    window.selectProperty = function (id) {
-      document.getElementById("propertySelect").value = id;
-      updateTotal();
-      document.getElementById("book-now").scrollIntoView({ behavior: "smooth" });
+    window.chooseResidence = function (id) {
+      document.getElementById("residenceSelect").value = id;
+      updateEstimate();
+      document.getElementById("reserve").scrollIntoView({ behavior: "smooth" });
     };
 
-    function updateTotal() {
-      const propId = document.getElementById("propertySelect").value;
-      const nights = Math.max(1, parseInt(document.getElementById("nights").value || "1", 10));
-      const prop = siteData.properties.find((p) => p.id === propId) || siteData.properties[0];
-      const totalKes = prop.priceKes * nights;
-      document.getElementById("totalDisplay").textContent = formatPrice(totalKes);
+    function updateEstimate() {
+      const id = document.getElementById("residenceSelect").value;
+      const nights = Math.max(1, parseInt(document.getElementById("nightsInput").value || "1", 10));
+      const res = state.residences.find((r) => r.id === id) || state.residences[0];
+      document.getElementById("totalAmount").textContent = money(res.rateKes * nights);
     }
 
-    document.getElementById("currencyToggle").addEventListener("click", (e) => {
-      currency = currency === "KES" ? "USD" : "KES";
-      e.target.textContent = `Currency: ${currency}`;
-      renderProperties();
+    document.getElementById("closeLightbox").addEventListener("click", () => {
+      document.getElementById("lightbox").classList.remove("open");
     });
 
-    document.getElementById("propertySelect").addEventListener("change", updateTotal);
-    document.getElementById("nights").addEventListener("input", updateTotal);
+    document.getElementById("lightbox").addEventListener("click", (e) => {
+      if (e.target.id === "lightbox") {
+        e.currentTarget.classList.remove("open");
+      }
+    });
 
-    document.getElementById("bookingForm").addEventListener("submit", (e) => {
+    document.getElementById("currencyBtn").addEventListener("click", (e) => {
+      state.currency = state.currency === "KES" ? "USD" : "KES";
+      e.target.textContent = state.currency;
+      renderResidences();
+    });
+
+    document.getElementById("residenceSelect").addEventListener("change", updateEstimate);
+    document.getElementById("nightsInput").addEventListener("input", updateEstimate);
+
+    document.getElementById("reserveForm").addEventListener("submit", (e) => {
       e.preventDefault();
-      const propId = document.getElementById("propertySelect").value;
-      const prop = siteData.properties.find((p) => p.id === propId) || siteData.properties[0];
+      const id = document.getElementById("residenceSelect").value;
+      const res = state.residences.find((r) => r.id === id) || state.residences[0];
       const name = document.getElementById("guestName").value.trim();
       const phone = document.getElementById("guestPhone").value.trim();
-      const checkIn = document.getElementById("checkIn").value;
-      const nights = Math.max(1, parseInt(document.getElementById("nights").value || "1", 10));
-      const guests = document.getElementById("guestsCount").value;
-      const notes = document.getElementById("notes").value.trim();
-      const totalKes = prop.priceKes * nights;
+      const checkin = document.getElementById("checkinDate").value;
+      const nights = Math.max(1, parseInt(document.getElementById("nightsInput").value || "1", 10));
+      const guests = document.getElementById("guestsInput").value;
+      const notes = document.getElementById("guestNotes").value.trim();
+      const totalKes = res.rateKes * nights;
 
-      const message = [
-        `*SERENE STAY AIRBNB'S — Booking Request*`,
+      const text = [
+        `*SERENE STAY AIRBNB'S — Reservation*`,
         `Location: Nyanchwa, Kisii`,
-        `Residence: ${prop.name} (${prop.subarea})`,
-        `Guest Name: ${name}`,
-        `Guest Phone: ${phone}`,
-        `Check-in Date: ${checkIn}`,
+        `Residence: ${res.name}`,
+        `Guest: ${name}`,
+        `Phone: ${phone}`,
+        `Check-In: ${checkin}`,
         `Nights: ${nights}`,
         `Guests: ${guests}`,
         `Estimated Total: KES ${totalKes.toLocaleString()}`,
-        notes ? `Notes: ${notes}` : `Notes: None`
-      ].join("\n");
+        notes ? `Notes: ${notes}` : null
+      ].filter(Boolean).join("\n");
 
-      const waUrl = `https://wa.me/${siteData.brand.whatsappIntl}?text=${encodeURIComponent(message)}`;
-      window.open(waUrl, "_blank", "noopener,noreferrer");
+      window.open(`https://wa.me/${state.whatsapp}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
     });
 
-    async function init() {
-      const today = new Date().toISOString().split("T")[0];
-      document.getElementById("checkIn").value = today;
+    async function boot() {
+      document.getElementById("checkinDate").value = new Date().toISOString().split("T")[0];
 
       try {
-        const res = await fetch("listings.json");
-        if (res.ok) {
-          const loaded = await res.json();
-          if (loaded && Array.isArray(loaded.photos) && Array.isArray(loaded.properties)) {
-            siteData = {
-              brand: {
-                name: loaded.brand?.name || EMBEDDED_DATA.brand.name,
-                location: loaded.brand?.location || EMBEDDED_DATA.brand.location,
-                whatsappDisplay: loaded.brand?.whatsapp_display || EMBEDDED_DATA.brand.whatsappDisplay,
-                whatsappIntl: loaded.brand?.whatsapp_intl || EMBEDDED_DATA.brand.whatsappIntl,
-                usdRate: loaded.brand?.usd_rate || EMBEDDED_DATA.brand.usdRate
-              },
-              photos: loaded.photos,
-              properties: loaded.properties.map((p) => ({
-                id: p.id,
-                name: p.name,
-                subarea: p.subarea,
-                priceKes: p.price_kes,
-                guests: p.guests,
-                bedrooms: p.bedrooms,
-                photo: p.featured_photo,
-                amenities: p.amenities || []
-              }))
-            };
+        const resp = await fetch("listings.json");
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data?.brand?.whatsapp_intl) state.whatsapp = data.brand.whatsapp_intl;
+          if (data?.brand?.usd_rate) state.usdRate = data.brand.usd_rate;
+          if (Array.isArray(data?.residences) && data.residences.length) {
+            state.residences = data.residences.map((r) => ({
+              id: r.id,
+              name: r.name,
+              area: r.area || "Nyanchwa, Kisii",
+              rateKes: r.rate_kes,
+              guests: r.guests,
+              bedrooms: r.bedrooms,
+              rating: r.rating || "4.9",
+              cover: r.cover,
+              features: r.features || [],
+              description: r.description || ""
+            }));
+          }
+          if (Array.isArray(data?.gallery) && data.gallery.length) {
+            state.gallery = data.gallery;
           }
         }
       } catch (_) {}
 
-      renderProperties();
+      renderResidences();
       renderGallery();
-      attachAllImageChains();
     }
 
-    init();
+    boot();
   </script>
 </body>
 </html>
