@@ -561,7 +561,7 @@
 
       <nav class="nav-links" aria-label="Primary">
         <a href="#residences">Residences</a>
-        <a href="#spaces">Spaces</a>
+        <a href="#spaces">Gallery</a>
         <a href="#tour">Video Tour</a>
         <a href="#reserve">Reserve</a>
       </nav>
@@ -575,7 +575,7 @@
 
   <section class="hero">
     <div class="hero-card">
-      <img src="images/1795203755185.jpg" alt="" />
+      <img id="heroImg" src="images/1795203755185.jpg" alt="" />
       <div class="hero-scrim">
         <div class="eyebrow">
           <span class="status-dot" aria-hidden="true"></span>
@@ -588,7 +588,8 @@
         </p>
         <div class="hero-actions">
           <a href="#residences" class="btn-gold">View Residences</a>
-          <a href="#reserve" class="btn-ghost">Reserve Stay</a>
+          <a href="#spaces" class="btn-ghost">Photo Gallery</a>
+          <a href="#tour" class="btn-ghost">Video Tour</a>
         </div>
       </div>
     </div>
@@ -608,7 +609,7 @@
     <section id="spaces" class="container">
       <div class="section-header">
         <div>
-          <h2>Inside Our Spaces</h2>
+          <h2>Photo Gallery</h2>
         </div>
         <p>Living areas, lounges, and bedrooms across Nyanchwa, Kisii.</p>
       </div>
@@ -786,18 +787,32 @@
       gallery: FALLBACK.gallery
     };
 
+    const BACKUP_POOL = [
+      "images/1795203755185.jpg",
+      "images/1795203772100.jpg",
+      "images/1795203763969.jpg",
+      "images/1795203750919.jpg",
+      "images/1795203778895.jpg",
+      "images/1795203781498.jpg",
+      "images/1795203793511.jpg",
+      "images/1795203796704.jpg",
+      "images/1795203775185.jpg",
+      "images/1795203857962.jpg"
+    ];
+
     function bindSmartImage(img, primarySrc, fallbackSrc) {
       img.alt = "";
+      let idx = 0;
+      const candidates = [primarySrc, fallbackSrc, ...BACKUP_POOL].filter(Boolean);
       img.onerror = () => {
-        if (fallbackSrc && img.dataset.fallbackDone !== "1") {
-          img.dataset.fallbackDone = "1";
-          img.src = fallbackSrc;
+        idx += 1;
+        if (idx < candidates.length) {
+          img.src = candidates[idx];
         } else {
           img.onerror = null;
-          img.style.opacity = "0";
         }
       };
-      img.src = primarySrc;
+      img.src = candidates[0];
     }
 
     function applyVideoSource(videoPath) {
@@ -850,7 +865,7 @@
           </div>
         `;
         const imgEl = card.querySelector(".res-img");
-        bindSmartImage(imgEl, item.cover, item.fallback || "images/1795203755185.jpg");
+        bindSmartImage(imgEl, item.cover, item.fallback);
         grid.appendChild(card);
 
         const option = document.createElement("option");
@@ -877,7 +892,7 @@
           </div>
         `;
         const imgEl = el.querySelector(".gal-img");
-        bindSmartImage(imgEl, tile.src, tile.fallback || "images/1795203775185.jpg");
+        bindSmartImage(imgEl, tile.src, tile.fallback);
 
         el.addEventListener("click", () => {
           const activeSrc = imgEl.currentSrc || imgEl.src || tile.src;
@@ -952,9 +967,42 @@
 
     async function boot() {
       document.getElementById("checkinDate").value = new Date().toISOString().split("T")[0];
+      bindSmartImage(document.getElementById("heroImg"), "images/1795203755185.jpg", "images/1795203772100.jpg");
 
       try {
         const resp = await fetch("listings.json");
         if (resp.ok) {
           const data = await resp.json();
-          if (data
+          if (data?.brand?.whatsapp_intl) state.whatsapp = data.brand.whatsapp_intl;
+          if (data?.brand?.usd_rate) state.usdRate = data.brand.usd_rate;
+          if (typeof data?.video === "string" && data.video.trim()) state.video = data.video.trim();
+          if (Array.isArray(data?.residences) && data.residences.length) {
+            state.residences = data.residences.map((r) => ({
+              id: r.id,
+              name: r.name,
+              area: r.area || "Nyanchwa, Kisii",
+              rateKes: r.rate_kes,
+              guests: r.guests,
+              bedrooms: r.bedrooms,
+              rating: r.rating || "4.9",
+              cover: r.cover,
+              fallback: r.fallback,
+              features: r.features || [],
+              description: r.description || ""
+            }));
+          }
+          if (Array.isArray(data?.gallery) && data.gallery.length) {
+            state.gallery = data.gallery;
+          }
+        }
+      } catch (_) {}
+
+      applyVideoSource(state.video);
+      renderResidences();
+      renderGallery();
+    }
+
+    boot();
+  </script>
+</body>
+</html>
