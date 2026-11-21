@@ -419,6 +419,24 @@
       object-fit: cover;
     }
 
+    .video-fallback-note {
+      display: none;
+      padding: 1.25rem;
+      background: var(--surface-2);
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .video-fallback-note.show {
+      display: block;
+    }
+
+    .video-fallback-note a {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
     .video-bar {
       padding: 1rem 1.25rem;
       display: flex;
@@ -634,6 +652,10 @@
         >
           <source src="videos/tour.mp4" type="video/mp4" />
         </video>
+        <div class="video-fallback-note" id="videoFallbackNote">
+          Walkthrough video could not play inline in this browser.
+          <a id="directVideoLink" href="videos/tour.mp4" target="_blank" rel="noopener noreferrer">Open video file directly</a>.
+        </div>
         <div class="video-bar">
           <div>
             <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold-light);">
@@ -817,11 +839,28 @@
 
     function applyVideoSource(videoPath) {
       const vid = document.getElementById("walkthroughVideo");
+      const note = document.getElementById("videoFallbackNote");
+      const directLink = document.getElementById("directVideoLink");
       if (!vid || !videoPath) return;
+
+      if (directLink) directLink.href = videoPath;
+      if (note) note.classList.remove("show");
+
+      const handleVideoError = () => {
+        if (note) note.classList.add("show");
+      };
+
+      vid.removeEventListener("error", handleVideoError, true);
+      vid.addEventListener("error", handleVideoError, true);
+
       const sourceEl = vid.querySelector("source");
-      if (sourceEl && sourceEl.getAttribute("src") !== videoPath) {
-        sourceEl.setAttribute("src", videoPath);
-        vid.load();
+      if (sourceEl) {
+        sourceEl.removeEventListener("error", handleVideoError, true);
+        sourceEl.addEventListener("error", handleVideoError, true);
+        if (sourceEl.getAttribute("src") !== videoPath) {
+          sourceEl.setAttribute("src", videoPath);
+          vid.load();
+        }
       }
     }
 
