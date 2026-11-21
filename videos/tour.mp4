@@ -1,0 +1,25 @@
+    .video-showcase {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .video-showcase video {
+      width: 100%;
+      max-height: 520px;
+      display: block;
+      background: #000;
+      object-fit: cover;
+    }
+
+    .video-bar {
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
