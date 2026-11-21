@@ -402,6 +402,32 @@
       color: var(--text);
     }
 
+    .video-showcase {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .video-showcase video {
+      width: 100%;
+      max-height: 520px;
+      display: block;
+      background: #000;
+      object-fit: cover;
+    }
+
+    .video-bar {
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
     .booking-box {
       background: var(--surface);
       border: 1px solid var(--line);
@@ -536,6 +562,7 @@
       <nav class="nav-links" aria-label="Primary">
         <a href="#residences">Residences</a>
         <a href="#spaces">Spaces</a>
+        <a href="#tour">Video Tour</a>
         <a href="#reserve">Reserve</a>
       </nav>
 
@@ -586,6 +613,36 @@
         <p>Living areas, lounges, and bedrooms across Nyanchwa, Kisii.</p>
       </div>
       <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <section id="tour" class="container">
+      <div class="section-header">
+        <div>
+          <h2>Video Walkthrough</h2>
+        </div>
+        <p>Take a closer look inside our Nyanchwa, Kisii apartments.</p>
+      </div>
+
+      <div class="video-showcase">
+        <video
+          id="walkthroughVideo"
+          controls
+          playsinline
+          preload="metadata"
+          poster="images/1795203755185.jpg"
+        >
+          <source src="videos/tour.mp4" type="video/mp4" />
+        </video>
+        <div class="video-bar">
+          <div>
+            <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold-light);">
+              Nyanchwa, Kisii
+            </div>
+            <div style="font-weight:600;">Serene Stay Interior Walkthrough</div>
+          </div>
+          <a href="#reserve" class="btn-gold">Reserve This Stay</a>
+        </div>
+      </div>
     </section>
 
     <section id="reserve" class="container">
@@ -663,6 +720,7 @@
     const FALLBACK = {
       whatsapp: "254788245106",
       usdRate: 130,
+      video: "videos/tour.mp4",
       residences: [
         {
           id: "nyanchwa-gold-residence",
@@ -710,9 +768,9 @@
         { src: "images/1795203763969.jpg", fallback: "images/1795203775185.jpg", tag: "Lounge", caption: "Amber & Charcoal Lounge" },
         { src: "images/1795203750919.jpg", fallback: "images/1795203796704.jpg", tag: "Living Room", caption: "Cove-Lit Family Living Room" },
         { src: "images/1795203778895.jpg", fallback: "images/1795203781498.jpg", tag: "Lounge", caption: "Sunlit Living & Media Area" },
-        { src: "images/1795203781498.jpg", fallback: "images/1795203778895.jpg", tag: "Sitting Room", caption: "Family Sitting Area" },
-        { src: "images/1795203793511.jpg", fallback: "images/1795203772100.jpg", tag: "Sitting", caption: "Executive Sitting Area" },
-        { src: "images/1795203796704.jpg", fallback: "images/1795203857962.jpg", tag: "Bedroom", caption: "Classic Guest Bedroom" },
+        { src: "images/1795203781498.jpg", fallback: "images/1795203778895.jpg", tag: "Sitting Room", caption: "Executive Sitting Area" },
+        { src: "images/1795203793511.jpg", fallback: "images/1795203772100.jpg", tag: "Bedroom", caption: "Classic Guest Bedroom" },
+        { src: "images/1795203796704.jpg", fallback: "images/1795203857962.jpg", tag: "Family Lounge", caption: "Relaxed Family Seating" },
         { src: "images/1795203775185.jpg", fallback: "images/1795203763969.jpg", tag: "Evening Lounge", caption: "Warm Evening Living Room" },
         { src: "images/13905.jpg", fallback: "images/1795203775185.jpg", tag: "Media Lounge", caption: "Sectional Sofa & Smart TV" },
         { src: "images/1795203857962.jpg", fallback: "images/1795203796704.jpg", tag: "Suite View", caption: "Nyanchwa Suite Interior" }
@@ -723,6 +781,7 @@
       currency: "KES",
       whatsapp: FALLBACK.whatsapp,
       usdRate: FALLBACK.usdRate,
+      video: FALLBACK.video,
       residences: FALLBACK.residences,
       gallery: FALLBACK.gallery
     };
@@ -739,6 +798,16 @@
         }
       };
       img.src = primarySrc;
+    }
+
+    function applyVideoSource(videoPath) {
+      const vid = document.getElementById("walkthroughVideo");
+      if (!vid || !videoPath) return;
+      const sourceEl = vid.querySelector("source");
+      if (sourceEl && sourceEl.getAttribute("src") !== videoPath) {
+        sourceEl.setAttribute("src", videoPath);
+        vid.load();
+      }
     }
 
     function money(kes) {
@@ -888,34 +957,4 @@
         const resp = await fetch("listings.json");
         if (resp.ok) {
           const data = await resp.json();
-          if (data?.brand?.whatsapp_intl) state.whatsapp = data.brand.whatsapp_intl;
-          if (data?.brand?.usd_rate) state.usdRate = data.brand.usd_rate;
-          if (Array.isArray(data?.residences) && data.residences.length) {
-            state.residences = data.residences.map((r) => ({
-              id: r.id,
-              name: r.name,
-              area: r.area || "Nyanchwa, Kisii",
-              rateKes: r.rate_kes,
-              guests: r.guests,
-              bedrooms: r.bedrooms,
-              rating: r.rating || "4.9",
-              cover: r.cover,
-              fallback: r.fallback || "images/1795203755185.jpg",
-              features: r.features || [],
-              description: r.description || ""
-            }));
-          }
-          if (Array.isArray(data?.gallery) && data.gallery.length) {
-            state.gallery = data.gallery;
-          }
-        }
-      } catch (_) {}
-
-      renderResidences();
-      renderGallery();
-    }
-
-    boot();
-  </script>
-</body>
-</Lou
+          if (data
